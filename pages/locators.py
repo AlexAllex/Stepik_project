@@ -11,9 +11,10 @@ class LoginPageLocators ():
 
 
 class ProductPageLocators():
-    bottom_add = (By.CLASS_NAME, "btn.btn-lg.btn-primary.btn-add-to-basket")
+    bottom_add = (By.CSS_SELECTOR, "button.btn.btn-lg.btn-primary.btn-add-to-basket")
 
-    has_added_to_cart = (By.CSS_SELECTOR, ".alert.alert-safe.alert-noicon.alert-success.fade.in:nth-child(1)")
+    has_added_to_cart = (By.CSS_SELECTOR, ".alertinner >strong")
     name_of_product = (By.CSS_SELECTOR, ".col-sm-6.product_main h1")
     product_price = (By.CSS_SELECTOR, ".col-sm-6.product_main .price_color")
     check_product_price = (By.XPATH, '//div[@class="alert alert-safe alert-noicon alert-info  fade in"]/div[@class="alertinner "]/p/strong')
+    should_not_be_success_mes = (By.CLASS_NAME, '.alertinner ')

@@ -1,7 +1,7 @@
 from .base_page import BasePage
 from selenium.webdriver.common.by import By
 from .locators import ProductPageLocators
-from selenium.webdriver.support import expected_conditions as EC
+
 from selenium.webdriver.support.ui import WebDriverWait
 
 
@@ -30,7 +30,8 @@ class PageObject(BasePage):
         product_name = self.browser.find_element(*ProductPageLocators.name_of_product)
        # assert added == "The shellcoder's handbook был добавлен в вашу корзину.", \
        # f"Wrong product, got {added} instead of 'The shellcoder's handbook был добавлен в вашу корзину.'"
-        assert product_name.text in added.text , "Названия товаров не совпадает"
+        #assert product_name.text in added.text , "Названия товаров не совпадает"
+        assert product_name.text == added.text, "Названия товаров не совпадает"
         
 
     def price_of_cart(self):
@@ -45,3 +46,20 @@ class PageObject(BasePage):
         #print(product_price.text)
         #print(price.text)
         #assert product_price.text == price.text, "не равно"
+
+
+    def should_be_success_message(self):
+        assert self.is_not_element_present(*ProductPageLocators.has_added_to_cart), \
+       "Success message is presented"
+       
+       
+    def should_not_be_success_message(self):
+         assert self.is_not_element_present(*ProductPageLocators.has_added_to_cart), \
+       "Success message is presented,but should not be"
+       
+        
+       
+       
+    def message_is_disappeared(self):
+        assert self.is_disappeared(*ProductPageLocators.has_added_to_cart), \
+            "Success message is not disappeared"
